@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Copyright Watermark Tool</title>
+    <style>
+        body {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #fff;
+        }
+
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+
+        h2 {
+            color: #34495e;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            color: #7f8c8d;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin: 20px 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        code {
+            background-color: #f8f9fa;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+            color: #e74c3c;
+        }
+
+        pre {
+            background-color: #2d3748;
+            color: #e2e8f0;
+            padding: 16px;
+            border-radius: 8px;
+            overflow-x: auto;
+            margin: 15px 0;
+        }
+
+        pre code {
+            background: none;
+            color: inherit;
+            padding: 0;
+        }
+
+        ul, ol {
+            margin: 15px 0;
+            padding-left: 30px;
+        }
+
+        li {
+            margin: 8px 0;
+        }
+
+        blockquote {
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+            padding: 0 20px;
+            color: #7f8c8d;
+        }
+
+        .file-tree {
+            background-color: #f8f9fa;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 15px;
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.9em;
+        }
+
+        .highlight {
+            background-color: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 4px;
+            padding: 12px;
+            margin: 15px 0;
+        }
+
+        @media (max-width: 768px) {
+            body {
+                padding: 15px;
+            }
+            
+            pre {
+                padding: 12px;
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Copyright Watermark Tool</h1>
+    <p>Well, this is basically a simple web app that adds copyright watermarks to your images. You know how you need to protect your photos? This does that for you.</p>
+    
+    <img width="1692" alt="image" src="https://github.com/user-attachments/assets/c0977361-23a7-4dda-be25-29408a0d70c8" />
+    
+    <h2>What it does</h2>
+    <ul>
+        <li>Works with PNG, JPG, and JPEG files</li>
+        <li>Lets you type whatever copyright text you want</li>
+        <li>You can make the watermark more or less see-through</li>
+        <li>Has a clean interface that's kinda like Apple's design</li>
+        <li>Just drag and drop your files</li>
+        <li>Downloads the watermarked image automatically</li>
+        <li>Works on your phone too</li>
+    </ul>
+    
+    <h2>How to get it running</h2>
+    <p>You'll need Python 3.12 and the uv package manager. That's it.</p>
+    <ol>
+        <li>Download or clone this thing to your computer</li>
+        <li>Go to the folder:
+            <pre><code>cd copyright-app</code></pre>
+        </li>
+        <li>Install the stuff it needs:
+            <pre><code>uv sync</code></pre>
+        </li>
+    </ol>
+    
+    <h2>How to use it</h2>
+    <p>For development (debugging mode):</p>
+    <pre><code># Copy the example environment file
+cp env.example .env
+# Start the app
+uv run python main.py</code></pre>
+    
+    <p>For production:</p>
+    <pre><code># Set up your environment file
+echo "ENV=production" > .env
+echo "SECRET_KEY=your-super-secret-key-here" >> .env
+echo "DEBUG=false" >> .env
+# Run it
+uv run python main.py</code></pre>
+    
+    <p>Then just go to <code>http://localhost:8080</code> in your browser.</p>
+    <ol>
+        <li>Upload an image (PNG, JPG, or JPEG)</li>
+        <li>Type your copyright text (it starts with "© 2024 Your Name")</li>
+        <li>Move the opacity slider to make it more or less transparent</li>
+        <li>Click "Add Copyright & Download"</li>
+    </ol>
+    <p>That's literally it.</p>
+    
+    <h2>Environment settings</h2>
+    <p>The app uses a <code>.env</code> file for configuration. Copy <code>env.example</code> to <code>.env</code> and change what you need:</p>
+    <pre><code>ENV=development          # or production
+SECRET_KEY=your-key-here
+HOST=0.0.0.0
+PORT=8080
+DEBUG=true              # false for production</code></pre>
+    
+    <h2>How it actually works</h2>
+    <p>The app puts your copyright text in the bottom-right corner of your images. It adds a semi-transparent background so you can actually read the text. The original image quality stays good.</p>
+    <p>Your processed images get "copyright_" added to the front of the filename.</p>
+    
+    <h2>Deploying to a server</h2>
+    <p>This thing runs on basically any Linux server. It automatically finds fonts that work on different systems. If you're running it in production:</p>
+    <ol>
+        <li>Set <code>ENV=production</code> in your <code>.env</code> file</li>
+        <li>Change the <code>SECRET_KEY</code> to something random</li>
+        <li>Set <code>DEBUG=false</code></li>
+        <li>Make sure your server has the required fonts (most Linux servers do)</li>
+    </ol>
+    
+    <p>Common deployment commands:</p>
+    <pre><code># For systemd service
+sudo cp your-service-file.service /etc/systemd/system/
+sudo systemctl enable your-service-file
+sudo systemctl start your-service-file
+# Or just run it directly
+nohup uv run python main.py &</code></pre>
+    
+    <h2>What's inside</h2>
+    <div class="file-tree">
+<pre>copyright-app/
+├── app.py              # Main Flask app
+├── main.py             # Entry point
+├── config.py           # Configuration handler
+├── templates/
+│   └── index.html     # The web interface
+├── env.example        # Environment file template
+├── pyproject.toml     # Dependencies
+└── LICENSE            # MIT License</pre>
+    </div>
+    
+    <h2>Making changes</h2>
+    
+    <h3>Watermark position</h3>
+    <p>You can move where the copyright appears by editing the <code>add_copyright_to_image()</code> function in <code>app.py</code>:</p>
+    <pre><code># Change these numbers to move it around
+padding = 20
+x = img.width - text_width - padding  # right side
+y = img.height - text_height - padding  # bottom</code></pre>
+    
+    <h3>The look and feel</h3>
+    <p>All the styling is in <code>templates/index.html</code>. It uses Apple's system fonts and has that clean, modern vibe.</p>
+    
+    <h2>Security stuff</h2>
+    <ul>
+        <li>Files can't be bigger than 16MB</li>
+        <li>Only PNG, JPG, and JPEG files work</li>
+        <li>Everything gets processed in memory</li>
+        <li>Temporary files get cleaned up automatically</li>
+        <li>Make sure you change the secret key if you're putting this on the internet</li>
+    </ul>
+    
+    <h2>License</h2>
+    <p>MIT License. Do whatever you want with it.</p>
+    
+    <h2>Requirements</h2>
+    <ul>
+        <li>Flask: The web framework</li>
+        <li>Pillow: For image processing</li>
+        <li>Python 3.12 or newer</li>
+    </ul>
+    
+    <p>That's really all there is to it. Simple tool for a simple job.</p>
+</body>
+</html>
