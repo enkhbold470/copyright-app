@@ -1,0 +1,31 @@
+[project]
+name = "copyright-app"
+version = "0.1.0"
+description = "A simple web app for adding copyright watermarks to images"
+readme = "README.md"
+requires-python = ">=3.12"
+license = {file = "LICENSE"}
+authors = [
+    {name = "Copyright App", email = "hello@example.com"}
+]
+keywords = ["copyright", "watermark", "image", "flask", "web"]
+
+dependencies = [
+    "flask>=3.1.1",
+    "pillow>=11.2.1",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+]
+
+[tool.black]
+line-length = 88
+target-version = ['py312']
+
+[tool.flake8]
+max-line-length = 88
+extend-ignore = ["E203", "W503"]
