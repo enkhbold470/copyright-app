@@ -1,6 +1,7 @@
 # Copyright Watermark Tool
 
 Well, this is basically a simple web app that adds copyright watermarks to your images. You know how you need to protect your photos? This does that for you.
+<img width="1692" alt="image" src="https://github.com/user-attachments/assets/c0977361-23a7-4dda-be25-29408a0d70c8" />
 
 ## What it does
 
